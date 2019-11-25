@@ -23,12 +23,13 @@ public class Main {
 }
 
 class Caller {
-    private String BASE_URI = "https://api.tfl.gov.uk";
+    private String TFL_URI = "https://api.tfl.gov.uk";
+    private String POSTCODE_URI = "https://api.postcodes.io";
     private WebTarget target;
 
     public void setUp() throws Exception {
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
-        target = client.target(BASE_URI);
+        target = client.target(TFL_URI);
     }
 
     public void getArrivals(String stopID) {
