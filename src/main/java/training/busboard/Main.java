@@ -11,6 +11,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Main {
@@ -18,7 +19,11 @@ public class Main {
     public static void main(String args[]) throws Exception {
         Caller caller = new Caller();
         caller.setUp();
-        List<Arrival> arrivals = caller.getArrivals("490008660N");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a stop ID: ");
+        String code = scanner.nextLine();
+        // "490008660N"
+        List<Arrival> arrivals = caller.getArrivals(code);
         Collections.sort(arrivals);
         Stream<Arrival> arrivalStream = arrivals.stream();
         arrivalStream.limit(5).forEach((a) -> System.out.println(a));
