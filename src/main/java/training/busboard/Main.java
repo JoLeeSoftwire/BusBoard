@@ -1,10 +1,17 @@
 package training.busboard;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -25,7 +32,10 @@ class Caller {
     }
 
     public void getArrivals(String stopID) {
-        String responseMsg = target.path("/StopPoint/" + stopID + "/Arrivals").request().get(String.class);
-        System.out.println(responseMsg);
+        List<Arrival> responseArrivals = target
+                .path("/StopPoint/" + stopID + "/Arrivals")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<ArrayList<Arrival>>(){});
+        System.out.println(responseArrivals);
     }
 }
