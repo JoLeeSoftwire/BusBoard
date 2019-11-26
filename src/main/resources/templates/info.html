@@ -14,6 +14,16 @@
             <div>
                 <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
             </div>
+            <div th:each="stop : ${busInfo.stops}">
+                <h3 th:text="${stop}"></h3>
+                <table>
+                    <tr th:each="arrival : ${busInfo.getArrivals(busInfo.getStopWithName(stop))}">
+                        <td th:text="${arrival.expectedArrival}">1</td>
+                        <td th:text="${arrival.lineId}">2</td>
+                        <td th:text="${arrival.destinationName}">3</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </body>
 </html>

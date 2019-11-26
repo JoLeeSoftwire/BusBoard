@@ -15,4 +15,8 @@ public class BusStop implements Comparable<BusStop>{
     public int compareTo(BusStop b) {
         return Double.compare(distance, b.distance);
     }
+
+    public String getCommonName() {
+        return commonName;
+    }
 }
