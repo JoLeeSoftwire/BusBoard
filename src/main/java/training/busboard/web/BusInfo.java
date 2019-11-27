@@ -3,15 +3,19 @@ package training.busboard.web;
 import training.busboard.Arrival;
 import training.busboard.BusStop;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BusInfo {
     private final String postcode;
-    HashMap<BusStop, List<Arrival>> nearbyBuses;
+    HashMap<BusStop, Stream<Arrival>> nearbyBuses;
 
-    public BusInfo(String postcode, HashMap<BusStop, List<Arrival>> buses) {
+    public BusInfo(String postcode, HashMap<BusStop, Stream<Arrival>> buses) {
         this.postcode = postcode;
         this.nearbyBuses = buses;
     }
@@ -37,7 +41,9 @@ public class BusInfo {
         return null;
     }
 
-    public List<Arrival> getArrivals(BusStop stop) {
-        return nearbyBuses.get(stop);
+    public ArrayList<Arrival> getArrivals(BusStop stop) {
+        List<Arrival> aList = nearbyBuses.get(stop).collect(Collectors.toList());
+        Collections.sort(aList);
+        return new ArrayList<Arrival>(aList);
     }
 }

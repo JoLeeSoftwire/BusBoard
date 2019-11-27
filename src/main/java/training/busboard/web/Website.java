@@ -10,7 +10,6 @@ import training.busboard.*;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -28,7 +27,7 @@ public class Website {
         boolean valid = validatePostcode(postcode);
 
         if(valid) {
-            HashMap<BusStop, List<Arrival>> departures = getDeparturesNearby(postcode);
+            HashMap<BusStop, Stream<Arrival>> departures = getDeparturesNearby(postcode);
             return new ModelAndView("info", "busInfo", new BusInfo(postcode, departures));
         } else {
             return new ModelAndView("index", "error", true);
@@ -44,8 +43,8 @@ public class Website {
         SpringApplication.run(Website.class, args);
     }
 
-    public HashMap<BusStop, List<Arrival>> getDeparturesNearby(String postcode) throws Exception {
-        final HashMap<BusStop, List<Arrival>> output = new HashMap<>();
+    public HashMap<BusStop, Stream<Arrival>> getDeparturesNearby(String postcode) throws Exception {
+        final HashMap<BusStop, Stream<Arrival>> output = new HashMap<>();
 
         final Caller caller = new Caller();
         caller.setUp();
@@ -58,7 +57,9 @@ public class Website {
         final Stream<BusStop> stopStream = nearbyStops.stopPoints.stream();
 
         // take closest two stops
-        stopStream.limit(2).forEach((s) -> output.put(s, caller.getArrivals(s.naptanId)));
+        stopStream.filter((st) -> { return caller.getArrivals(st.naptanId).count() > 0; })
+                .limit(2)
+                .forEach((s) -> output.put(s, caller.getArrivals(s.naptanId)));
 
         return output;
 

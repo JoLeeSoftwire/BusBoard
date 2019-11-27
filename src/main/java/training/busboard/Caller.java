@@ -10,8 +10,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Caller {
     private final String TFL_URI = "https://api.tfl.gov.uk";
@@ -25,11 +27,13 @@ public class Caller {
         postcodeTarget = client.target(POSTCODE_URI);
     }
 
-    public List<Arrival> getArrivals(final String stopID) {
+    public Stream<Arrival> getArrivals(final String stopID) {
         final List<Arrival> responseArrivals = tflTarget.path("/StopPoint/" + stopID + "/Arrivals")
                 .request(MediaType.APPLICATION_JSON).get(new GenericType<ArrayList<Arrival>>() {
                 });
-        return responseArrivals;
+        final Stream<Arrival> arrivalStream = responseArrivals.stream().limit(5);
+
+        return arrivalStream;
     }
 
     public BusStops getNearbyStops(final Postcode p) {

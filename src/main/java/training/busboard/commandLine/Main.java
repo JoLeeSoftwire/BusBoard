@@ -8,7 +8,7 @@ import training.busboard.*;
 public class Main {
 
     public static void main(final String args[]) throws Exception {
-        final HashMap<BusStop, List<Arrival>> output = new HashMap<>();
+        final HashMap<BusStop, Stream<Arrival>> output = new HashMap<>();
 
         final Caller caller = new Caller();
         caller.setUp();
@@ -28,7 +28,7 @@ public class Main {
         stopStream.limit(2).forEach((s) -> output.put(s, caller.getArrivals(s.naptanId)));
 
         for (final BusStop i : output.keySet()) {
-            final List<Arrival> arrivals = output.get(i);
+            final Stream<Arrival> arrivals = output.get(i);
             StringBuffer prettyArrivals = new StringBuffer();
             // System.out.println(arrivals);
             arrivals.forEach((a) -> {
