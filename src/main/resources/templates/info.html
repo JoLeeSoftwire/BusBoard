@@ -22,7 +22,7 @@
                 <div>
                     <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
                 </div>
-                <div th:each="stop : ${busInfo.stops}">
+                <div id="busDetails" th:each="stop : ${busInfo.stops}">
                     <h4 class="mb-2" th:text="${stop}"></h4>
                     <table class="table table-striped">
                         <thead>
@@ -45,3 +45,12 @@
         </div>
     </body>
 </html>
+
+<script>
+    function updateBuses() {
+        console.log("Refreshing buses...");
+        location.reload();
+    }
+
+    setTimeout(updateBuses, 30000);
+</script>
