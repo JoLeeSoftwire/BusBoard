@@ -9,16 +9,18 @@
 <div layout:fragment="content" class="container body-content">
     <div class="jumbotron">
         <h1>BusBoard</h1>
-        <p class="lead">For all your bus info needs. Enter a postcode below and click enter to see bus times for that location.</p>
+        <p class="lead">For all your bus info needs. Enter a postcode below and search to see bus times for that location.</p>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form id="messageForm" th:action="@{/busInfo}" method="get">
-                <fieldset>
-                    <legend>Postcode: </legend>
-                    <input type="text" name="postcode">
-                    <input type="submit" value="Get Bus Info" />
-                </fieldset>
+            <form class="form-inline" id="messageForm" th:action="@{/busInfo}" method="get">
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Postcode: </legend>
+                        <input type="text" name="postcode" class="form-control" placeholder="Postcode"/>
+                        <button type="submit" class="btn btn-danger">Search Buses</button>
+                    </fieldset>
+                </div>
             </form>
         </div>
     </div>
