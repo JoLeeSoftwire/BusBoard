@@ -35,7 +35,7 @@ public class Website {
     }
 
     private boolean validatePostcode(String postcode) {
-        Pattern pattern = Pattern.compile("[a-z,A-Z]+[0-9]+( )?[0-9][a-z,A-Z]{2}");
+        Pattern pattern = Pattern.compile("[a-z,A-Z]+[0-9]+[a-z,A-Z]?( )?[0-9][a-z,A-Z]{2}");
         return pattern.matcher(postcode).matches();
     }
 
