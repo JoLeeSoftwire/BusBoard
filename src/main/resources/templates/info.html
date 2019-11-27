@@ -27,16 +27,16 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Bus Number</th>
-                                <th scope="col">Destination</th>
-                                <th scope="col">Expected At</th>
+                                <th scope="col" style="width: 5rem;">Bus Number</th>
+                                <th scope="col" style="width: 40%;">Destination</th>
+                                <th scope="col" style="width: 40%;">Expected At</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="arrival : ${busInfo.getArrivals(busInfo.getStopWithName(stop))}">
-                                <th scope="row" th:text="${arrival.lineId}"></th>
-                                <td th:text="${arrival.destinationName}"></td>
-                                <td th:text="${arrival.expectedArrival.substring(11,16)}"></td>
+                                <th style="width: 5rem;" scope="row" th:text="${arrival.lineId}"></th>
+                                <td style="width: 40%;" th:text="${arrival.destinationName}"></td>
+                                <td style="width: 40%;" th:text="${arrival.expectedArrival.substring(11,16)}"></td>
                             </tr>
                         </tbody>
                     </table>
