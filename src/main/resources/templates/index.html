@@ -9,14 +9,14 @@
 <div layout:fragment="content" class="container body-content">
     <div style="display: flex;">
         <div style="display: flex; flex-direction: column;">
-            <p style="font-size: 2rem; margin: .5rem 1rem 2rem 0; width: 50%;">For all your bus info needs. Enter a postcode below and search to see bus times for that location.</p> 
+            <p style="font-size: 10rem; width: 45%;" class="mt-5">BusBoard</p>
+            <p style="font-size: 2rem; width: 45%; padding-left: 1%">For all your bus info needs. Enter a postcode below and search to see bus times for that location.</p>
             <div class="col-md-12">
                 <form class="form" id="messageForm" th:action="@{/busInfo}" method="get">
                     <div class="form-group form-group-lg">
                         <fieldset>
-                            <legend>Postcode: </legend>
                             <input type="text" name="postcode" class="form-control mb-2" style="width: 20%;" placeholder="Postcode"/>
-                            <button type="submit" class="btn btn-danger">Search Buses</button>
+                            <button type="submit" class="btn btn-danger btn-lg">Search Buses</button>
                         </fieldset>
                     </div>
                 </form>
@@ -28,3 +28,9 @@
 </div>
 </body>
 </html>
+
+<style>
+    html, body {
+        margin: 0; height: 100%; overflow: hidden;
+    }
+</style>
