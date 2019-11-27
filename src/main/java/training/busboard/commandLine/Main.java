@@ -1,7 +1,8 @@
-package training.busboard;
+package training.busboard.commandLine;
 
 import java.util.*;
 import java.util.stream.Stream;
+import training.busboard.*;
 
 
 public class Main {
