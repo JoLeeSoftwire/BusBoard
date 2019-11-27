@@ -5,10 +5,11 @@
     <title>Layout</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
           href="../../css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Calistoga|Titillium+Web&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: #fafafa;">
+<body style="background-color: #fafafa; font-family: 'Titillium Web', sans-serif;">
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" th:href="@{/}">
+    <a class="navbar-brand" style="font-family: 'Calistoga', cursive;" th:href="@{/}">
         <img src="https://image.flaticon.com/icons/svg/335/335121.svg" width="50" height="50" alt="BusBoard"/>
         BusBoard
     </a>
@@ -17,3 +18,9 @@
 <div layout:fragment="content"></div>
 </body>
 </html>
+
+<style>
+    html, body {
+        margin: 0; height: 100%; overflow: hidden;
+    }
+</style>
