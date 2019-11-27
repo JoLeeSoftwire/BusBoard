@@ -9,35 +9,38 @@
         <title>Bus Information</title>
     </head>
     <body>
-        <div layout:fragment="content" class="container body-content">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-dark">
+        <div layout:fragment="content" class="container body-content" style="max-width: 100%; padding: 0">
+            <nav aria-label="breadcrumb" id="breadcrumb">
+                <ol class="breadcrumb bg-dark" style="border-radius: 0">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Bus Information</li>
                 </ol>
             </nav>
-            <h2>Bus Information</h2>
-            <div>
-                <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
-            </div>
-            <div th:each="stop : ${busInfo.stops}">
-                <h4 class="mb-2" th:text="${stop}"></h4>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Bus Number</th>
-                            <th scope="col">Destination</th>
-                            <th scope="col">Expected At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="arrival : ${busInfo.getArrivals(busInfo.getStopWithName(stop))}">
-                            <th scope="row" th:text="${arrival.lineId}"></th>
-                            <td th:text="${arrival.destinationName}"></td>
-                            <td th:text="${arrival.expectedArrival.substring(11,16)}"></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div class="mr-5 ml-5">
+                <h2>Bus Information</h2>
+                <div>
+                    <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
+                </div>
+                <div th:each="stop : ${busInfo.stops}">
+                    <h4 class="mb-2" th:text="${stop}"></h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Bus Number</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Expected At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="arrival : ${busInfo.getArrivals(busInfo.getStopWithName(stop))}">
+                                <th scope="row" th:text="${arrival.lineId}"></th>
+                                <td th:text="${arrival.destinationName}"></td>
+                                <td th:text="${arrival.expectedArrival.substring(11,16)}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
