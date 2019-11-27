@@ -6,7 +6,6 @@ import training.busboard.BusStop;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class BusInfo {
     private final String postcode;

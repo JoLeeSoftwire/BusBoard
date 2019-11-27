@@ -2,9 +2,6 @@ package training.busboard;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Arrival implements Comparable<Arrival> {
     public String id;

@@ -1,23 +1,8 @@
 package training.busboard;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.glassfish.jersey.jackson.JacksonFeature;
-
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Stream;
 
-import static javax.swing.UIManager.get;
 
 public class Main {
 
