@@ -62,18 +62,6 @@ public class Website {
                 .forEach((s) -> output.put(s, caller.getArrivals(s.naptanId)));
 
         return output;
-
-//        for (final BusStop i : output.keySet()) {
-//            final List<Arrival> arrivals = output.get(i);
-//            StringBuffer prettyArrivals = new StringBuffer();
-//            // System.out.println(arrivals);
-//            arrivals.forEach((a) -> {
-//                prettyArrivals.append("\n");
-//                prettyArrivals.append(a);
-//            });
-//            System.out.println(
-//                    "Bus stop: " + i.commonName + "\nDistance: " + Math.round(i.distance) + "m\nArrivals: " + prettyArrivals);
-//        }
     }
 
 }
