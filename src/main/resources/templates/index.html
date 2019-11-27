@@ -10,18 +10,17 @@
     <div style="display: flex;">
         <div style="display: flex; flex-direction: column;">
             <p style="font-size: 2rem; margin: .5rem 1rem 2rem 0; width: 50%;">For all your bus info needs. Enter a postcode below and search to see bus times for that location.</p> 
-            <div class="row">
-                <div class="col-md-12">
-                    <form class="form" id="messageForm" th:action="@{/busInfo}" method="get">
-                        <div class="form-group form-group-lg">
-                            <fieldset>
-                                <legend>Postcode: </legend>
-                                <input type="text" name="postcode" class="form-control mb-2" style="width: 20%;" placeholder="Postcode"/>
-                                <button type="submit" class="btn btn-danger">Search Buses</button>
-                            </fieldset>
-                        </div>
-                    </form>
-                </div>
+            <div class="col-md-12">
+                <form class="form" id="messageForm" th:action="@{/busInfo}" method="get">
+                    <div class="form-group form-group-lg">
+                        <fieldset>
+                            <legend>Postcode: </legend>
+                            <input type="text" name="postcode" class="form-control mb-2" style="width: 20%;" placeholder="Postcode"/>
+                            <button type="submit" class="btn btn-danger">Search Buses</button>
+                        </fieldset>
+                    </div>
+                </form>
+                <div class="alert alert-danger" style="width: 30%;" role="alert" th:if="${error}">Postcode invalid</div>
             </div>
         </div>
         <img src="../../images/london-travel.jpg" style="position: absolute; bottom: 0; right: 0; height: 80%; margin: 0 0 2rem 2rem; z-index: -1;"/>

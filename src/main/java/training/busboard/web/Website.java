@@ -11,6 +11,7 @@ import training.busboard.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 @Controller
@@ -24,8 +25,19 @@ public class Website {
 
     @RequestMapping("/busInfo")
     ModelAndView busInfo(@RequestParam("postcode") String postcode) throws Exception {
-        HashMap<BusStop, List<Arrival>> departures = getDeparturesNearby(postcode);
-        return new ModelAndView("info", "busInfo", new BusInfo(postcode, departures));
+        boolean valid = validatePostcode(postcode);
+
+        if(valid) {
+            HashMap<BusStop, List<Arrival>> departures = getDeparturesNearby(postcode);
+            return new ModelAndView("info", "busInfo", new BusInfo(postcode, departures));
+        } else {
+            return new ModelAndView("index", "error", true);
+        }
+    }
+
+    private boolean validatePostcode(String postcode) {
+        Pattern pattern = Pattern.compile("[a-z,A-Z]+[0-9]+( )?[0-9][a-z,A-Z]{2}");
+        return pattern.matcher(postcode).matches();
     }
 
     public static void main(String[] args) throws Exception {
