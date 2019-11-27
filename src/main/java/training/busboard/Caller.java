@@ -28,18 +28,25 @@ public class Caller {
 
     public Stream<Arrival> getArrivals(final String stopID) {
         final List<Arrival> responseArrivals = tflTarget.path("/StopPoint/" + stopID + "/Arrivals")
-                .request(MediaType.APPLICATION_JSON).get(new GenericType<ArrayList<Arrival>>() {
-                });
+            .queryParam("app_id", "bb152b0d")
+            .queryParam("app_key", "e37114eaebef57644ca2ea2629d93383")
+            .request(MediaType.APPLICATION_JSON)
+            .get(new GenericType<ArrayList<Arrival>>() {
+            });
         final Stream<Arrival> arrivalStream = responseArrivals.stream().limit(5);
 
         return arrivalStream;
     }
 
     public BusStops getNearbyStops(final Postcode p) {
-        final BusStops responseStops = tflTarget.path("/StopPoint").queryParam("lat", p.latitude)
-                .queryParam("lon", p.longitude).queryParam("stopTypes", "NaptanPublicBusCoachTram")
-                .request(MediaType.APPLICATION_JSON).get(new GenericType<BusStops>() {
-                });
+        final BusStops responseStops = tflTarget.path("/StopPoint")
+            .queryParam("lat", p.latitude)
+            .queryParam("lon", p.longitude).queryParam("stopTypes", "NaptanPublicBusCoachTram")
+            .queryParam("app_id", "bb152b0d")
+            .queryParam("app_key", "e37114eaebef57644ca2ea2629d93383")
+            .request(MediaType.APPLICATION_JSON)
+            .get(new GenericType<BusStops>() {
+        });
         return responseStops;
     }
 
