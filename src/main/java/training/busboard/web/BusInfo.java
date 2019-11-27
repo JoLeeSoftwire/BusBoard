@@ -7,15 +7,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BusInfo {
-    private final String postcode;
+    private String postcode;
     HashMap<BusStop, Stream<Arrival>> nearbyBuses;
 
     public BusInfo(String postcode, HashMap<BusStop, Stream<Arrival>> buses) {
-        this.postcode = postcode;
+        Pattern pattern = Pattern.compile("([a-z,A-Z]+[0-9]+[a-z,A-Z]?)( )?([0-9][a-z,A-Z]{2})");
+        Matcher matcher = pattern.matcher(postcode);
+        matcher.matches();
+        this.postcode = matcher.group(1) + " " + matcher.group(3);
         this.nearbyBuses = buses;
     }
 
