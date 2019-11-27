@@ -23,7 +23,7 @@
                     <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
                 </div>
                 <div id="busDetails" th:each="stop : ${busInfo.stops}">
-                    <h4 class="mb-2" th:text="${stop}"></h4>
+                    <span><img src="https://image.flaticon.com/icons/svg/1042/1042263.svg" width="50px"/><h4 class="mb-2" th:text="${stop}" style="display: inline-block"></h4></span>
                     <table class="table table-striped">
                         <thead>
                             <tr>
