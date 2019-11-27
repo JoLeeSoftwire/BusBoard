@@ -3,6 +3,9 @@ package training.busboard;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties.Env;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.env.Environment;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -14,11 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+@ConfigurationProperties(prefix = "app")
 public class Caller {
     private final String TFL_URI = "https://api.tfl.gov.uk";
     private final String POSTCODE_URI = "https://api.postcodes.io";
     private WebTarget tflTarget;
     private WebTarget postcodeTarget;
+    private String id;
+    private String key;
 
     public void setUp() throws Exception {
         final Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
@@ -28,8 +34,8 @@ public class Caller {
 
     public Stream<Arrival> getArrivals(final String stopID) {
         final List<Arrival> responseArrivals = tflTarget.path("/StopPoint/" + stopID + "/Arrivals")
-            .queryParam("app_id", "bb152b0d")
-            .queryParam("app_key", "e37114eaebef57644ca2ea2629d93383")
+            .queryParam("app_id", id)
+            .queryParam("app_key", key)
             .request(MediaType.APPLICATION_JSON)
             .get(new GenericType<ArrayList<Arrival>>() {
             });
