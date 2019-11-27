@@ -10,6 +10,12 @@
     </head>
     <body>
         <div layout:fragment="content" class="container body-content">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-dark">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Bus Information</li>
+                </ol>
+            </nav>
             <h2>Bus Information</h2>
             <div>
                 <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
