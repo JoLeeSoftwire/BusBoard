@@ -3,7 +3,6 @@ package training.busboard.web;
 import training.busboard.Arrival;
 import training.busboard.BusStop;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
